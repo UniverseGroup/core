@@ -74,7 +74,15 @@
   flex-wrap: wrap;
   max-width: 800px;
 }
-
+.link{
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  cursor: pointer;
+}
+.link:hover{
+  color: #969696;
+}
 .card {
   margin: 1rem;
   padding: 1.5rem;
