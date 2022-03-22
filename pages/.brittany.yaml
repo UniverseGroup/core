@@ -1,0 +1,9 @@
+image: 'restyled/restyler-jdt:v2.13.0'
+command:
+  - formatter
+arguments: []
+include:
+  - '**/*.css'
+  - '**/*.html'
+  - '**/*.js'
+interpreters: []
