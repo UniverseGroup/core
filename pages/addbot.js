@@ -16,7 +16,7 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 // import Markdownviewer from "../components/markdownviewer";
 import Box from "@mui/material/Box";
-//import {useRouter} from "next/router";
+import {useRouter} from "next/router";
 //import StickyFooter from "../components/Footer";
 import dynamic from "next/dynamic";
 import {EmojiEmotions} from "@mui/icons-material";
@@ -105,6 +105,7 @@ export default function Addbot({...key}) {
         },mode: "all" };
     const { register, reset, formState:{errors,isValid},watch,getValues,setValue,trigger,setFocus } = useForm(formOptions);
     //const { errors } = formState;
+    const router = useRouter();
     const Topto = () => {
         window.scrollTo({
             top: 0,
@@ -113,9 +114,10 @@ export default function Addbot({...key}) {
     }
     function Submit(values){
         //alert(JSON.stringify(values))
+        setalertmessage({err:false})
         setSubmit(false)
         CaptchaRef?.current?.resetCaptcha()
-        if(!isValid){
+        if(!isValid && Object.keys(errors) !==[]){
             console.log(Object.keys(errors))
             trigger(Object.keys(errors)[0],{shouldFocus:true})
             //setFocus(String(),{ shouldSelect: true })
@@ -152,13 +154,12 @@ export default function Addbot({...key}) {
                     reset()
                     // setLibrary(undefined)
                     // setCategory(undefined)
-                    libraryselectRef.clearValue()
-                    categoryselectRef.clearValue()
+                    // libraryselectRef.clearValue()
+                    // categoryselectRef.clearValue()
                     setalertmessage({err:true,type:'success',title:'신청완료!',message:'성공적으로 봇 심사요청을 하였습니다!'})
-                    CaptchaRef?.current?.resetCaptcha()
                     setTimeout(()=>{
-                        setalertmessage({err:false})
-                    },5000)
+                        router.push('/bots/'+values.botid)
+                    },2000)
                 }else {
                     setalertmessage({err:true,type:'error',title:'에러발생!',message:data.message})
                 }
@@ -258,7 +259,7 @@ export default function Addbot({...key}) {
                 <form onSubmit={(event)=> {
                     event.preventDefault()
                     setSubmit(true)
-                }} autoComplete='false'>
+                }} autoComplete='off'>
                     <div style={{display: 'flex', alignItems: 'center'}}>
                         <input type="checkbox" name="acceptTerms" id="acceptTerms" {...register('acceptTerms')}/>
                         <p style={{margin: '0'}}>해당 내용을 숙지하였으며, 모두 이행하였고 위 내용에 해당하는 거부 사유는 답변받지 않는다는 점을 이해합니다.</p>

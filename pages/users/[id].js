@@ -1,6 +1,7 @@
 // import ResponsiveAppBar from "../../components/navbar";
 // import StickyFooter from "../../components/Footer";
 import PendBot from "../../models/pendbot";
+import Bot from "../../models/bot";
 import dbConnect from "../../lib/dbConnect";
 import cookie from "cookie";
 import jwt from "jsonwebtoken";
@@ -31,7 +32,8 @@ const Mypage = ({...data}) => {
     const userdata=data.user
     const userinfo=data.userinfo
     const pendbots=data.pendbot
-    console.log('pends',pendbots)
+    const bots=data.bots
+    console.log(data)
     const useravatar =userinfo&&userinfo.useravatar
     const router = useRouter()
     const Topto = () => {
@@ -69,33 +71,12 @@ const Mypage = ({...data}) => {
                     columnGap:'0.3em',
                     marginBottom:'5em'
                 }}>
-                    <BotCard bot={userinfo.bots} manage={Boolean(pendbots)}/>
-                    {/*{*/}
-                    {/*    userinfo.bots.map((bot,index)=>{*/}
-                    {/*        console.log(bot)*/}
-                    {/*        return(*/}
-                    {/*            <Card key={index} className={styles.Card}>*/}
-                    {/*                <Image quality={100} width={256} height={256} src={`/api/imageproxy?url=${encodeURIComponent(bot.botavatar+"?size=512")}`}/>*/}
-                    {/*                <CardContent>*/}
-                    {/*                    <Typography gutterBottom variant="h5" component="h2">*/}
-                    {/*                        {bot.botname}*/}
-                    {/*                    </Typography>*/}
-                    {/*                    <Typography variant="body2" color="textSecondary" component="p">*/}
-                    {/*                        {bot.slug}*/}
-                    {/*                    </Typography>*/}
-                    {/*                </CardContent>*/}
-                    {/*                <CardActions style={{justifyContent:'center'}}>*/}
-                    {/*                    <Button size="small" color="primary" fullWidth={true} className={styles.CardBtn} onClick={()=>GotoPage('/bots/'+bot.botid)}>*/}
-                    {/*                        상세페이지*/}
-                    {/*                    </Button>*/}
-                    {/*                    <Button size="small" color="primary" fullWidth={true} className={styles.CardBtn} onClick={()=>GotoPage(bot.invite)}>*/}
-                    {/*                        초대*/}
-                    {/*                    </Button>*/}
-                    {/*                </CardActions>*/}
-                    {/*            </Card>*/}
-                    {/*        )*/}
-                    {/*    })*/}
-                    {/*}*/}
+                    {
+                        Boolean(bots) ?<BotCard bot={bots} manage={userdata.id===router.query.id}/>:(
+                            <Typography variant="h6" style={{fontWeight:'bold',marginTop:'1.4em',marginBottom:'0.5em'}}>소유한 봇이 없습니다.</Typography>
+                        )
+                    }
+                    
                 </Box>
                 {
                     pendbots ? (
@@ -150,7 +131,7 @@ const Mypage = ({...data}) => {
                                 }
                             </Box>
                         </>
-                    ):null
+                    ) : null
                 }
 
             </main>
@@ -171,6 +152,7 @@ export async function getServerSideProps({req,res,query}) {
     }
     let pendbot = null
     const userdb = await User.findOne({userid:query.id},{_id:0,'bots._id':0}).lean()
+    const botdata = await Bot.find({owners: {'$elemMatch':{'id':query.id}}}, {_id: 0, __v: 0,token:0}).lean()||null
     console.log(key)
     // const botinfo = pendbots?await getUserData(bot.botid).then(()=>console.log('fetch success')):null
     if(key?.id===query.id){
@@ -181,6 +163,7 @@ export async function getServerSideProps({req,res,query}) {
         props: {
             userinfo: userdb,
             pendbot: pendbot?pendbot:null,
+            bots: botdata,
             user: key,
         }
     }

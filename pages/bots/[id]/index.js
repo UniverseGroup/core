@@ -149,7 +149,7 @@ const Botpage = ({...data}) => {
                                 botdata.owners.map((owner,index)=>{
                                     return(
                                         <>
-                                            <div onClick={()=>GotoPage('/users/'+owner.id)} className={cdstyles.Card} style={{display:'flex',justifyContent:'flex-start',alignItems:'center',marginBottom:'1em',marginTop:'1em',columnGap:"1em",backgroundColor:'gray',borderRadius:'8px',padding:'5px',width:'100%',height:'6.2em',color:'inherit'}}>
+                                            <div onClick={()=>GotoPage('/users/'+owner.id)} className={cdstyles.Card} style={{display:'flex',justifyContent:'flex-start',alignItems:'center',marginTop:'0.5em',columnGap:"1em",backgroundColor:'gray',borderRadius:'8px',padding:'5px',width:'100%',height:'6.2em',color:'inherit'}}>
                                                 <Avatar sx={{ width: 80, height: 80,borderRadius:'50' }} src={owner.avatar+"?size=256"}/>
                                                 <div style={{flexGrow:'1',textAlign:'left',paddingLeft:'1.25em',paddingRight:'1.25em',paddingBottom:'3em',paddingTop:'3em'}}>
                                                     <Typography variant="h6" style={{fontWeight:'bold'}}>{owner.username}#{owner.discriminator}</Typography>

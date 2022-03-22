@@ -24,8 +24,6 @@ async def on_member_join(member:discord.Member):
         findid = list(db['UniverseDatabase']['pendbots'].find({'botid':str(member.id)}))
         db['UniverseDatabase']['pendbots'].update_one({'id':findid[-1]['id']},{"$set":{"pending":True}})
         await member.add_roles(role)
-# async def create_bot_db():
-#     client.db = MongoClient(os.getenv('MONGODB_URI'))
 
 @client.event
 async def on_command_error(ctx,error):
@@ -36,12 +34,6 @@ async def on_command_error(ctx,error):
 @commands.has_role(954010525019299860)
 async def todo(ctx):
     data = list(db['UniverseDatabase']['pendbots'].find())
-    #print(list(data))
-    # for item in data:
-    #     print(item)
-    # collection=client.db['pendbots']
-    # datas = collection.find({})
-    # print(datas)
     num = sum(not item['approved'] and item['denyReason'] == "" for item in data)
     em = discord.Embed(title='Todo',description=f"Todo Count : {num}")
     await ctx.reply(embed=em)
@@ -52,7 +44,6 @@ async def bots(ctx):
     data = list(db['UniverseDatabase']['pendbots'].find())
     todonum = sum(not item['approved'] and item['denyReason'] == ""  for item in data)
     em = discord.Embed(title='Todo',description=f"Todo Count : {todonum}")
-    #print(list(data))
     num = 0
     for item in data:
         if not item['approved'] and item['denyReason'] == "":
@@ -84,7 +75,7 @@ async def approve(ctx,uniqueid):
     await member_bot.remove_roles(pend_bot_role)
     await member_bot.add_roles(bot_role)
     try:
-        await owner.send(f'축하드립니다!🎉🎉\n\n신청하신봇 ( **{userbot.name}#{userbot.discriminator}** )(이)가 승인되었습니다!\n\n봇 페이지 -{os.getenv("BASE_URL")}/bots/{userbot.id}')
+        await owner.send(f'축하드립니다!🎉🎉\n\n신청하신봇 ( **{userbot.name}#{userbot.discriminator}** )(이)가 승인되었습니다!\n\n봇 페이지 -{os.getenv("BASE_URL")}bots/{userbot.id}')
     except:
         pass
     await ctx.reply('✅')
@@ -123,5 +114,4 @@ async def findowner(ctx,bot:discord.User):
 
 
 if __name__ == "__main__":
-    #client.loop.run_until_complete(create_bot_db())
     client.run(os.getenv('TOKEN'))

@@ -15,6 +15,7 @@ const nextConfig = {
     HCAPTCHA_SECRET_KEY: process.env.HCAPTCHA_SECRET_KEY,
     OFFICIAL_GUILDID: process.env.OFFICIAL_GUILDID,
     NORMAL_IMG: process.env.NORMAL_IMG,
+    BOT_REVIEWER: process.env.BOT_REVIEWER,
   }
 }
 

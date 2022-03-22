@@ -102,6 +102,6 @@ const BotSchema = new mongoose.Schema({
         default: ""
     },
 
-})
+},{_id:false})
 
 export default mongoose.models.Bot || mongoose.model('Bot', BotSchema)

@@ -9,6 +9,7 @@ import styles from "../../../styles/Addbot.module.css";
 import Typography from "@mui/material/Typography";
 import dynamic  from "next/dynamic";
 import PermissionError from "../../403";
+import NotfoundError from "../../404";
 import Image from "next/image";
 import Button from "@mui/material/Button";
 import {Alert, AlertTitle, Divider} from "@mui/material";
@@ -36,9 +37,9 @@ export async function getServerSideProps({req, res, query}) {
         res.writeHead(302, { Location: discordUrls.login })
         return res.end()
     }
-    const PendBotDB = await PendBot.findOne({id:query.pendid},{_id:0}).lean() || null
-    const BotDB = await Bot.findOne({botid:query.botid},{_id:0}).lean() || null
-    const ownerdata = await User.findOne({userid:PendBotDB.ownerid},{bots:0,_id:0}).lean()
+    const PendBotDB = await PendBot.findOne({id:query?.pendid},{_id:0}).lean()
+    const BotDB = await Bot.findOne({botid:query?.botid},{_id:0}).lean()
+    const ownerdata = await User.findOne({userid:PendBotDB?.ownerid},{bots:0,_id:0}).lean()
 
     return {
         props: {
@@ -55,17 +56,19 @@ const PendBotPage = ({...data}) => {
     const botdata = data.bot;
     const owner = data.owner;
     const router = useRouter();
-    if(pendbot===null||botdata===null||owner===null) {
-        const userdata ={
-            id:user?.id,
-            username:user?.username,
-            discriminator:user?.discriminator,
-            avatar:user?.avatar
-        }
-        return <PermissionError data={userdata}/>
-    }
+    if(!pendbot) return <NotfoundError data={user}/>
+    if(!(botdata.owners.find(x=>x.id===user.id)) && !(user.permission === 1)) return <PermissionError data={user}/>
+    // if(pendbot===null||botdata===null||owner===null) {
+    //     const userdata ={
+    //         id:user?.id,
+    //         username:user?.username,
+    //         discriminator:user?.discriminator,
+    //         avatar:user?.avatar
+    //     }
+    //     return <PermissionError data={userdata}/>
+    // }
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [copied,setCopied] = useCopyClipboard(pendbot.botdescription,{
+    const [copied,setCopied] = useCopyClipboard(pendbot?.botdescription,{
         successDuration: 1000
     })
     console.log(owner)

@@ -42,8 +42,10 @@ export default async (req, res) => {
         discriminator: userinfo.discriminator,
         useravatar: useravatar,
     },{upsert: true, new: true})
+    const userdata = await User.findOne({userid: userinfo.id},{_id:0}).lean()
     userinfo.access_token = token['access_token']
     userinfo.refresh_token = token['refresh_token']
+    userinfo.permission = userdata && userdata.permissions
     console.log(userinfo)
     const user = jwt.sign(userinfo, process.env.JWT_KEY);
     const cookie = new Cookies(req, res);
