@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+.idea
 /bot/venv
 /bot/.idea
 # testing

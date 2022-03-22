@@ -8,8 +8,7 @@ import styles from "../styles/Home.module.css";
 import {RiArrowGoBackFill} from "react-icons/ri";
 import StickyFooter from "../components/Footer";
 import {useRouter} from "next/router";
-const ResponsiveAppBar = dynamic(() => import("../components/navbar"));
-// const StickyFooter = dynamic(() => import("../components/footer"));
+const ResponsiveAppBar = dynamic(() => import("../components/navbar"))
 const NotFound = ({data})=>{
     const user = data;
     const router = useRouter();
