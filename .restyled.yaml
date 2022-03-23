@@ -14,14 +14,14 @@ changed_paths:
 
 remote_files: []
 
-auto: false
+auto: true
 
 commit_template: |
   Restyled by ${restyler.name}
 
 pull_requests: true
 
-comments: false
+comments: true
 
 statuses:
   skipped: true
