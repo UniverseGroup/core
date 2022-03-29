@@ -459,18 +459,7 @@
   resolved "https://registry.yarnpkg.com/@mui/types/-/types-7.1.3.tgz#d7636f3046110bcccc63e6acfd100e2ad9ca712a"
   integrity sha512-DDF0UhMBo4Uezlk+6QxrlDbchF79XG6Zs0zIewlR4c0Dt6GKVFfUtzPtHCH1tTbcSlq/L2bGEdiaoHBJ9Y1gSA==
 
-"@mui/utils@^5.4.4":
-  version "5.4.4"
-  resolved "https://registry.yarnpkg.com/@mui/utils/-/utils-5.4.4.tgz#bd7dde4f48f60c02b6debf976bd74f3505b188fe"
-  integrity sha512-hfYIXEuhc2mXMGN5nUPis8beH6uE/zl3uMWJcyHX0/LN/+QxO9zhYuV6l8AsAaphHFyS/fBv0SW3Nid7jw5hKQ==
-  dependencies:
-    "@babel/runtime" "^7.17.2"
-    "@types/prop-types" "^15.7.4"
-    "@types/react-is" "^16.7.1 || ^17.0.0"
-    prop-types "^15.7.2"
-    react-is "^17.0.2"
-
-"@mui/utils@^5.5.3":
+"@mui/utils@^5.4.4", "@mui/utils@^5.5.3":
   version "5.5.3"
   resolved "https://registry.yarnpkg.com/@mui/utils/-/utils-5.5.3.tgz#f6e1f10c0e8f4d0bf750588c2c3a96ad819c5b65"
   integrity sha512-t627eVRpl3SlxVya0cIVNs8jPl4KCEiGaTSWY9iKKTcMNaeDbuRML+zv/CFHDPr1zFv+FjJSP02ySB+tZ8xIag==
@@ -481,10 +470,10 @@
     prop-types "^15.7.2"
     react-is "^17.0.2"
 
-"@mui/x-data-grid@^5.6.1":
-  version "5.6.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-5.6.1.tgz#039d42a2b7f649371e26181c1efb7329b5fb833e"
-  integrity sha512-qFyQtGi/ZL8zkmOp4dbAykiu8d/Dd9kt1QZrk7yq7NyMZdCLRRAGa7TH0sweOXJPzRIBmHEOUPVycRt20pVAGA==
+"@mui/x-data-grid@^5.7.0":
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-5.7.0.tgz#fbb87989c201628f75dab419d6df44e9bb289bf1"
+  integrity sha512-mWk3IzClmGGsFfz3EzdifkQRhjNYkkyfCNMfQu1C6iJDPtkt5xmi71M+jMRv+lsupMEnrTv17j+6oM6YCqoM3Q==
   dependencies:
     "@mui/utils" "^5.4.4"
     clsx "^1.1.1"
