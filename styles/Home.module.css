@@ -56,6 +56,9 @@
   background-color: #6eadf8;
   color: inherit;
 }
+.CardBtn{
+  width: 50%;
+}
 .title,
 .description {
   text-align: center;

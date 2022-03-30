@@ -36,7 +36,11 @@ const UserSchema = new mongoose.Schema({
     hearts: {
         type: Array,
         default: []
-    }
+    },
+    badges:{
+        type: Array,
+        default: []
+    },
 
 },{_id:false})
 

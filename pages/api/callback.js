@@ -34,7 +34,7 @@ export default async (req, res) => {
         return res.end()
     }
 
-    const useravatar_format = userinfo&&userinfo.avatar.startsWith("a_") ? "gif" : "png"
+    const useravatar_format = userinfo&&userinfo.avatar.startsWith("a_") ? "gif" : "webp"
     const useravatar =userinfo&&`https://cdn.discordapp.com/avatars/${userinfo.id}/${userinfo.avatar}.${useravatar_format}`
     await User.findOneAndUpdate({userid: userinfo.id},{
         userid: userinfo.id,

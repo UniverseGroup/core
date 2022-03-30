@@ -83,13 +83,11 @@ export default function Addbot({ ...key }) {
     const data = key.user;
     const bot = key.bot;
     const owner = key.owner;
-    if (!(bot.owners.find(x => x.id === data.id)) && !(data.permission === 1)) return <PermissionError data={data} />
     const [ableemojipicker, setableemojipicker] = useState(false);
     const [category, setCategory] = useState(undefined);
     const [library, setLibrary] = useState(null);
-    const [categoryerr, setCategoryErr] = useState(true);
-    const [libraryerr, setLibraryErr] = useState(true);
-    const [token, setToken] = useState(null)
+    const [categoryerr, setCategoryErr] = useState(false);
+    const [libraryerr, setLibraryErr] = useState(false);
     const [submit, setSubmit] = useState(false)
     const [alertmessage, setalertmessage] = useState({})
     const [dummyuser, setDummyuser] = useState('')
@@ -153,7 +151,7 @@ export default function Addbot({ ...key }) {
         //alert(JSON.stringify(values))
         setSubmit(false)
         CaptchaRef?.current?.resetCaptcha()
-        if (!isValid) {
+        if (!isValid&& Object.keys(errors) !==[]) {
             trigger(Object.keys(errors)[0], { shouldFocus: true })
             return setalertmessage({ err: true, type: 'error', title: '필수기입필드 누락!', message: '무언가 누락되었습니다.' })
         }
@@ -298,6 +296,13 @@ export default function Addbot({ ...key }) {
     const SelectCategoryOption = [
         { value: 'manage', label: '관리' },
         { value: 'music', label: '뮤직' },
+        { value: 'util', label: '유틸리티' },
+        { value: 'game', label: '게임' },
+        { value: 'matchhistory', label: '전적' },
+        { value: 'search', label: '검색' },
+        { value: 'school', label: '학교' },
+        { value: 'cov19', label: '코로나' },
+        { value: 'etc', label: '기타' }
     ]
     const SelectLibraryOption = [
         { value: 'discord.py', label: 'discord.py' },
@@ -340,6 +345,7 @@ export default function Addbot({ ...key }) {
             selectedOptions: bot.category
         })
     }, [])
+    if (!(bot.owners.find(x => x.id === data.id)) && !(data.permission === 1)) return <PermissionError data={data} />
     return (
         <div style={{ padding: '0rem', overflowX: 'hidden' }}>
             <ResponsiveAppBar userdata={data} />
@@ -491,7 +497,7 @@ export default function Addbot({ ...key }) {
                             rows={10} name="longdesc"
                             {...register('longdesc')}
                             error={errors.longdesc} helperText={errors.longdesc?.message} />
-                        <IconButton onClick={() => setableemojipicker(!ableemojipicker)} style={{
+                        {/* <IconButton onClick={() => setableemojipicker(!ableemojipicker)} style={{
                             position: 'relative',
                             top: '-40px',
                             width: '1.5em',
@@ -503,7 +509,7 @@ export default function Addbot({ ...key }) {
                                     <Picker set='facebook' useButton={false} sheetSize={16} onClick={HandleEmoji} />
                                 </div>
                             )
-                        }
+                        } */}
                     </div>
                     <div style={{ display: 'grid', marginTop: '1.5em' }}>
                         <div>

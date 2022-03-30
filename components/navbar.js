@@ -22,7 +22,7 @@ const ResponsiveAppBar = ({userdata}) => {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
     const router = useRouter();
-    const authurl = discordUrls.login
+    const authurl = `https://discord.com/api/oauth2/authorize?client_id=953110159247433758&redirect_uri=http://localhost:3000/api/callback&response_type=code&scope=guilds%20guilds.join%20identify%20email`
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };

@@ -29,8 +29,9 @@ export async function getServerSideProps(ctx) {
         // await fetch('/api/invite/'+process.env.OFFICIAL_GUILDID,{
         //     method: 'GET',
         // }).then(res => console.log(res.json()))
-        await JoinServer({guildId:process.env.OFFICIAL_GUILDID, userId:key?.id, accessToken:key?.access_token})
-        joinstate = true;
+        const join = await JoinServer({guildId:process.env.OFFICIAL_GUILDID, userId:key?.id, accessToken:key?.access_token})
+        console.log(join)
+        joinstate = join.status !== 204;
     } catch {
         joinstate = false;
     }
@@ -103,6 +104,9 @@ const Discord = ({...data}) => {
                                 :
                                 (
                                     <>
+                                        <Typography variant="h2" sx={{fontFamily: 'Do Hyeon',color:'red'}}>
+                                            ⚠
+                                        </Typography>
                                         <Typography variant="h5" sx={{fontFamily: 'Do Hyeon',color:'red'}}>
                                             Failed to Join or Already Joined
                                         </Typography>

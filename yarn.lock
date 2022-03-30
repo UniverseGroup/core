@@ -295,6 +295,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.5.5.tgz#4ecc38e690469378e2ec2a97f9c12282c654cc93"
   integrity sha512-Pe1p+gAO6K0aLxBXlLoJRHVx352tVc/v/7DOnvM3t+FYXb+KUga9aCD1NpnDfd0kKnWXqrZyAXguyyFWDDuphw==
 
+"@fortawesome/fontawesome-common-types@6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-6.1.0.tgz#5a9468da0e5c2a3ccc161882ef5ffafbd3d4882f"
+  integrity sha512-lFIJ5opxOKG9q88xOsuJJAdRZ+2WRldsZwUR/7MJoOMUMhF/LkHUjwWACIEPTa5Wo6uTDHvGRIX+XutdN7zYxA==
+
 "@fortawesome/fontawesome-common-types@6.1.1":
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-6.1.1.tgz#7dc996042d21fc1ae850e3173b5c67b0549f9105"

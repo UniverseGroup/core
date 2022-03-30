@@ -101,6 +101,14 @@ const BotSchema = new mongoose.Schema({
         type: String,
         default: ""
     },
+    banner:{
+        type: String,
+        default: null
+    },
+    badges:{
+        type: Array,
+        default: []
+    },
 
 },{_id:false})
 

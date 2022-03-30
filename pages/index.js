@@ -1,17 +1,20 @@
 import styles from '../styles/Home.module.css'
-//import ResponsiveAppBar from "../components/navbar";
 import cookie from "cookie";
 import jwt from "jsonwebtoken";
-//import StickyFooter from "../components/Footer";
 import Typography from "@mui/material/Typography";
 import Bot from "../models/bot";
 import dbConnect from "../lib/dbConnect";
 import HeadTag from "../components/headtag";
 import dynamic from "next/dynamic";
 import StickyFooter from "../components/Footer";
+import Image from "next/image";
+import Tooltip from "@mui/material/Tooltip";
+import {BiBadgeCheck, BiRightArrowAlt} from "react-icons/bi";
+import Divider from "@mui/material/Divider";
+import Link from "next/link";
+import Button from "@mui/material/Button";
 const BotCard = dynamic(() => import("../components/BotCard"));
 const ResponsiveAppBar = dynamic(() => import("../components/navbar"));
-//const StickyFooter = dynamic(() => import("../components/Footer"));
 export async function getServerSideProps(ctx) {
   let key = null;
   await dbConnect();
@@ -22,9 +25,8 @@ export async function getServerSideProps(ctx) {
   } catch {
     key = null;
   }
-  const bots = await Bot.find({approved:true},{_id:0,token:0}).lean();
+  const bots = await Bot.find({approved:true},{_id:0,token:0}).limit(5).lean();
   console.log(bots);
-  // bots._id = bots._id.toString();
   return {
     props: {
       user: key,
@@ -36,11 +38,6 @@ export default function Home({...key}) {
   const data = key.user;
   const botdata =key.bot
   console.log(botdata)
-  // useEffect(()=>{
-  //   if(!data){
-  //     router.replace(`https://discord.com/api/oauth2/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}&response_type=code&scope=identify%20email`)
-  //   }
-  // })
   return (
     <div className={styles.container}>
       <ResponsiveAppBar userdata={data}/>
@@ -54,10 +51,26 @@ export default function Home({...key}) {
 
         <div style={{display:'inline-grid',marginTop: '2rem',marginBottom: '2rem'}}>
           <Typography variant="h4" sx={{fontFamily: 'Do Hyeon'}}>
+            💎 초기 등록봇
+          </Typography>
+          <div className={styles.grid} style={{gap:'1em'}}>
+            <BotCard bot={botdata} mode="EarlyBot"/>
+          </div>
+          <Typography variant="h4" sx={{fontFamily: 'Do Hyeon', marginTop:'3em'}}>
             🤖 봇 리스트
           </Typography>
           <div className={styles.grid} style={{gap:'1em'}}>
-            <BotCard bot={botdata.slice(0,5)}/>
+            <BotCard bot={botdata}/>
+            <Link href={`/bots`}>
+              <div className="anncard">
+                <div className="anncard__body" style={{textAlign:'center',marginTop:'50%',marginBottom:'50%',color:"#7289da"}}>
+                  <BiRightArrowAlt size="10em"/>
+                  <Typography gutterBottom variant="h5" component="h2" sx={{fontFamily: 'Do Hyeon'}}>
+                    더 많은 봇 보기
+                  </Typography>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </main>

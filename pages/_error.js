@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import styles from "../styles/Home.module.css";
 import StickyFooter from "../components/Footer";
 import { useRouter } from "next/router";
+import {RiArrowGoBackFill} from "react-icons/ri";
 const ResponsiveAppBar = dynamic(() => import("../components/navbar"));
 const NotFound = ({data})=>{
     const user = data;

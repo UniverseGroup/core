@@ -2,7 +2,7 @@ import cookie from "cookie";
 import jwt from "jsonwebtoken";
 //import ResponsiveAppBar from "../components/navbar";
 import styles from '../styles/Addbot.module.css'
-import 'emoji-mart/css/emoji-mart.css'
+// import 'emoji-mart/css/emoji-mart.css'
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import {
@@ -24,7 +24,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faLocationArrow} from "@fortawesome/free-solid-svg-icons/faLocationArrow";
 import Button from "@mui/material/Button";
 import * as Yup from 'yup';
-import { Picker } from 'emoji-mart'
+// import emojidata from 'emoji-mart/data/facebook.json';
+// import { Picker } from 'emoji-mart'
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useForm,useFormState} from "react-hook-form";
 import HeadTag from "../components/headtag";
@@ -32,11 +33,12 @@ import HCaptcha from "@hcaptcha/react-hcaptcha";
 import StickyFooter from "../components/Footer";
 import {discordUrls} from "../lib/DiscordTool"
 // const Picker = dynamic(
-//     () => import("emoji-mart")
+//     () => import("emoji-mart").then(({ Picker }) => Picker),
+//     { ssr: false }
 // );
 const Markdownviewer = dynamic(
     () => import("../components/markdownviewer"), {
-        loading: () => null,
+        ssr: false
     }
 );
 const ResponsiveAppBar = dynamic(() => import("../components/navbar"));
@@ -168,8 +170,16 @@ export default function Addbot({...key}) {
             .catch(e=>console.log(e))
     }
     const SelectCategoryOption = [
-        {value: 'manage', label: '관리'},
-        {value: 'music', label: '뮤직'},
+        { value: 'manage', label: '관리' },
+        { value: 'music', label: '뮤직' },
+        { value: 'util', label: '유틸리티' },
+        { value: 'game', label: '게임' },
+        { value: 'matchhistory', label: '전적' },
+        { value: 'search', label: '검색' },
+        { value: 'school', label: '학교' },
+        { value: 'cov19', label: '코로나' },
+        { value: 'slash', label: '빗금명령어' },
+        { value: 'etc', label: '기타' }
     ]
     const SelectLibraryOption = [
         {value: 'discord.py', label: 'discord.py'},
@@ -248,7 +258,7 @@ export default function Addbot({...key}) {
                             빗금 명령어 권한이 따로 부여되지 않습니다.)<br/>
                             - 도움 명령어: 도움, 도움말, 명령어, help, commands<br/>
                             - 도움 명령어에 소유자임을 나타내고 싶지 않으시다면, 아래 명령어를 만들어주세요<br/>
-                            명령어: [접두사]owner 또는 [접두사]주인 또는 [접두사]개발자<br/>응답: 유저#태그(아이디) (단, 맨션형일 경우 양식을 지키지않은것으로 간주합니다.)
+                            명령어(맨션형일 경우 양식을 지키지않은것으로 간주합니다.): [접두사]owner 또는 [접두사]주인 또는 [접두사]개발자<br/>응답: 유저#태그(아이디)<br/>응답예: gawi#9537(281566165699002379)
                             <li>또한 등록하시게되면 모든 정보가 웹과 API에 공개되며 등록심사중에는 수정 및 취소하실수없습니다.</li>
                             <p style={{fontSize: '0.8em', margin: '0'}}>위 내용은 <Link href="https://koreanbots.dev">한국
                                 디스코드 리스트</Link>를 참고하였습니다.</p>
@@ -359,6 +369,17 @@ export default function Addbot({...key}) {
                             <Typography variant="h5" style={{color: 'blue'}}><strong>봇 초대 URL</strong></Typography>
                             <p style={{margin: '0'}}>봇을 초대할수있는 URL을 의미합니다. 비워둘시 자동으로 생성합니다.(permission=0)</p>
                         </div>
+                        {
+                            Boolean(category?.selectedOptions.find(x=> x.value==="slash" && x.label==="빗금명령어")) &&
+                                (
+                                    <>
+                                        <Alert severity="warning" style={{marginTop:'2em'}}>
+                                            <AlertTitle>주의하세요.</AlertTitle>
+                                            '빗금명령어'를 선택하셨습니다. 기입하지않을시 빗금명령어권한이 있지않은 일반 초대URL로 생성됩니다. 직접 초대URL을 입력해주세요.
+                                        </Alert>
+                                    </>
+                                )
+                        }
                         <TextField style={{gridColumn: 'span 1/span 1', marginTop: '0.5em'}} variant="outlined"
                                    placeholder="https://discord.com/oauth2/authorize?client_id=953110159247433758&scope=bot&permissions=0"
                                    name="inviteurl" id="inviteurl"
@@ -389,7 +410,7 @@ export default function Addbot({...key}) {
                                    rows={10} name="longdesc"
                                    {...register('longdesc')}
                                    error={errors.longdesc} helperText={errors.longdesc?.message}/>
-                        <IconButton onClick={() => setableemojipicker(!ableemojipicker)} style={{
+                        {/* <IconButton onClick={() => setableemojipicker(!ableemojipicker)} style={{
                             position: 'relative',
                             top: '-40px',
                             width: '1.5em',
@@ -398,11 +419,27 @@ export default function Addbot({...key}) {
                         {
                             ableemojipicker && (
                                 <div style={{display: 'flex', justifyContent: 'left', position: 'relative', top: '-40px'}}>
-                                    <Picker set='facebook' useButton={false} sheetSize={16} onClick={HandleEmoji}/>
+                                    <Picker set='twitter' useButton={false} sheetSize={16} onClick={HandleEmoji}
+                                            title="이모지를 선택하세요." enableFrequentEmojiSort theme="auto" showSkinTones={false}
+                                            i18n={{
+                                                search: '검색',
+                                                notfound: '검색 결과가 없습니다.',
+                                                categories: {
+                                                    search: '검색 결과',
+                                                    recent: '최근 사용',
+                                                    people: '사람',
+                                                    nature: '자연',
+                                                    foods: '음식',
+                                                    activity: '활동',
+                                                    places: '장소',
+                                                    objects: '사물',
+                                                    symbols: '기호',
+                                                    flags: '국기',
+                                                    custom: '커스텀'
+                                                }}}/>
                                 </div>
                             )
-                        }
-                        {/*<EmojiPicker />*/}
+                        } */}
                     </div>
                     <div style={{display: 'grid', marginTop: '1.5em'}}>
                         <div>

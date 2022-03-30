@@ -93,6 +93,7 @@ export default async (req, res) => {
             await pendbot.deleteMany({botid: id});
             await kickUser(id,'Bot Deleted');
             res.status(200).json({message:"Deleted"});
+            break;
         case 'GET':
             const botData = await Bot.findOne({botid: id},{_id: 0, __v: 0,token: 0});
             res.status(200).json(botData);

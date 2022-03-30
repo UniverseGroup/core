@@ -70,3 +70,157 @@ p{
   }
 }
 
+/* NProgress */
+
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: #ff3381;
+
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 1.5px;
+}
+
+/* Fancy blur effect */
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  box-shadow: 0 0 10px #ff3381, 0 0 5px #ff3381;
+  opacity: 1.0;
+  transform: rotate(3deg) translate(0px, -4px);
+}
+
+/* Remove these to get rid of the spinner */
+#nprogress .spinner {
+  display: block;
+  position: fixed;
+  z-index: 1031;
+  top: 15px;
+  right: 15px;
+}
+
+#nprogress .spinner-icon {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+
+  border: solid 2px transparent;
+  border-top-color: #ff3381;
+  border-left-color: #ff3381;
+  border-radius: 50%;
+	animation: nprogress-spinner 400ms linear infinite;
+}
+
+.nprogress-custom-parent {
+  overflow: hidden;
+  position: relative;
+}
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+  position: absolute;
+}
+
+@keyframes nprogress-spinner {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+/* Custom Bot Card */
+
+.botcard {
+  border-radius: 20px;
+  width: 20em;
+  min-height: 27em;
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.botcard:hover{
+
+  transform: translateY(-10px);
+}
+
+
+.botcard__body {
+  margin: 1em;
+  margin-bottom: auto;
+}
+
+.botcard__image {
+  border-bottom: 1px solid #888888;
+}
+
+.botcard__image img {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
+.botcard__profile {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  top:-60px;
+  left: 95px;
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 100%;
+  border: 1px solid #dddddd;
+  overflow: hidden;
+}
+
+.botcard__profile img {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
+.botcard__action {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: baseline;
+}
+
+/* Custom Ann Card */
+
+.anncard {
+  border-radius: 20px;
+  width: 20em;
+  min-height: 27em;
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+  0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.17s ease-in-out;
+}
+
+.anncard:hover{
+  transform: translatex(20px);
+}
+
+
+.anncard__body {
+  margin: 1em;
+  margin-bottom: auto;
+}
