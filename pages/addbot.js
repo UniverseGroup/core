@@ -366,7 +366,7 @@ export default function Addbot({...key}) {
                                     <>
                                         <Alert severity="warning" style={{marginTop:'2em'}}>
                                             <AlertTitle>주의하세요.</AlertTitle>
-                                            '빗금명령어'를 선택하셨습니다. 기입하지않을시 빗금명령어권한이 있지않은 일반 초대URL로 생성됩니다. 직접 초대URL을 입력해주세요.
+                                            {'빗금명령어'}를 선택하셨습니다. 기입하지않을시 빗금명령어권한이 있지않은 일반 초대URL로 생성됩니다. 직접 초대URL을 입력해주세요.
                                         </Alert>
                                     </>
                                 )
