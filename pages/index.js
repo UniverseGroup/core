@@ -7,12 +7,8 @@ import dbConnect from "../lib/dbConnect";
 import HeadTag from "../components/headtag";
 import dynamic from "next/dynamic";
 import StickyFooter from "../components/Footer";
-import Image from "next/image";
-import Tooltip from "@mui/material/Tooltip";
-import {BiBadgeCheck, BiRightArrowAlt} from "react-icons/bi";
-import Divider from "@mui/material/Divider";
+import {BiRightArrowAlt} from "react-icons/bi";
 import Link from "next/link";
-import Button from "@mui/material/Button";
 const BotCard = dynamic(() => import("../components/BotCard"));
 const ResponsiveAppBar = dynamic(() => import("../components/navbar"));
 export async function getServerSideProps(ctx) {

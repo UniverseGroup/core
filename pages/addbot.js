@@ -1,6 +1,5 @@
 import cookie from "cookie";
 import jwt from "jsonwebtoken";
-//import ResponsiveAppBar from "../components/navbar";
 import styles from '../styles/Addbot.module.css'
 // import 'emoji-mart/css/emoji-mart.css'
 import Typography from "@mui/material/Typography";
@@ -11,21 +10,17 @@ import {
     IconButton,
     TextField
 } from "@mui/material";
-import {useEffect, useState,useRef} from "react";
+import {useState,useRef} from "react";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-// import Markdownviewer from "../components/markdownviewer";
 import Box from "@mui/material/Box";
 import {useRouter} from "next/router";
-//import StickyFooter from "../components/Footer";
 import dynamic from "next/dynamic";
 import {EmojiEmotions} from "@mui/icons-material";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faLocationArrow} from "@fortawesome/free-solid-svg-icons/faLocationArrow";
 import Button from "@mui/material/Button";
 import * as Yup from 'yup';
-// import emojidata from 'emoji-mart/data/facebook.json';
-// import { Picker } from 'emoji-mart'
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useForm,useFormState} from "react-hook-form";
 import HeadTag from "../components/headtag";
@@ -42,10 +37,6 @@ const Markdownviewer = dynamic(
     }
 );
 const ResponsiveAppBar = dynamic(() => import("../components/navbar"));
-// const StickyFooter = dynamic(() => import("../components/Footer"));
-// const makeAnimated = dynamic(
-//     () => import("react-select/animated")
-// );
 export async function getServerSideProps(ctx) {
     let key = null;
     try {

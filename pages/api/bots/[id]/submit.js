@@ -5,6 +5,8 @@ import dbConnect from "../../../../lib/dbConnect";
 import jwt from "jsonwebtoken";
 import {getUserData,sendSubmitMessage} from "../../../../lib/DiscordTool";
 import {Fetch,FetchUrl} from "../../../../lib/fetchTool"
+import {VerifyCaptcha} from "../../../../lib/Captcha";
+
 export default async (req,res)=>{
     const {query:{id},method,body,headers,cookies} = req;
     await dbConnect();
@@ -21,18 +23,8 @@ export default async (req,res)=>{
                     });
                 }
                 const userdata = jwt.verify(user, process.env.JWT_KEY)
-                const params = new URLSearchParams({
-                    secret: process.env.HCAPTCHA_SECRET_KEY,
-                    response:body.captcha,
-                })
-                const checkCaptcha = (await (await fetch(FetchUrl.captchaVerify,{
-                    method:'POST',
-                    body:params,
-                    headers:{
-                        'Content-Type':'application/x-www-form-urlencoded'
-                    }
-                })).json());
-                if(!checkCaptcha.success){
+                const checkCaptcha = await VerifyCaptcha(body.captcha);
+                if(!checkCaptcha){
                     return res.status(403).json({message:"Captcha Failed"})
                 }
                 if(body.botid==='953110159247433758'){

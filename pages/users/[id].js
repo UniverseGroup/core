@@ -111,7 +111,7 @@ const Mypage = ({...data}) => {
                         </div>
                     </div>
                     <div style={{display:'flex',flexDirection:'column'}}>
-                        <Button variant="contained" color="error" style={{width:'15em',gap:'0.4em'}} size="large" onClick={()=>setIsopen(!isopen)}><GoReport/>유저 신고하기</Button>
+                        <Button variant="contained" color="error" disabled={true} style={{width:'15em',gap:'0.4em'}} size="large" onClick={()=>setIsopen(!isopen)}><GoReport/>유저 신고하기</Button>
                     </div>
                 </div>
                 <Divider style={{marginTop: '1rem'}}/>

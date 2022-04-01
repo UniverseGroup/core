@@ -109,6 +109,14 @@ const BotSchema = new mongoose.Schema({
         type: Array,
         default: []
     },
+    users:{
+        type: Number,
+        default: 0
+    },
+    locked:{
+        type:Boolean,
+        default: false
+    }
 
 },{_id:false})
 

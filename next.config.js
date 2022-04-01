@@ -44,6 +44,7 @@ const nextConfig = {
     OFFICIAL_GUILDID: process.env.OFFICIAL_GUILDID,
     NORMAL_IMG: process.env.NORMAL_IMG,
     BOT_REVIEWER: process.env.BOT_REVIEWER,
+    CSRF_SECRET: process.env.CSRF_SECRET,
   }
 }
 
@@ -66,6 +67,7 @@ module.exports = withImages({
     OFFICIAL_GUILDID: process.env.OFFICIAL_GUILDID,
     NORMAL_IMG: process.env.NORMAL_IMG,
     BOT_REVIEWER: process.env.BOT_REVIEWER,
+    CSRF_SECRET: process.env.CSRF_SECRET,
   },
   webpack(config, options) {
     return config
