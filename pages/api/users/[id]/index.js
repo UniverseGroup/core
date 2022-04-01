@@ -1,6 +1,6 @@
 import dbConnect from "../../../../lib/dbConnect";
-import User from "../../../../models/User";
-import Bot from "../../../../models/Bot";
+import User from "../../../../models/user";
+import Bot from "../../../../models/bot";
 import {FetchUrl} from "../../../../lib/fetchTool";
 export default async (req, res) => {
     await dbConnect();

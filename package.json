@@ -27,6 +27,7 @@
     "@mui/x-data-grid": "^5.7.0",
     "cookie": "^0.4.2",
     "cookies": "^0.8.0",
+    "csrf": "^3.1.0",
     "emoji-mart": "^3.0.1",
     "isomorphic-fetch": "^3.0.0",
     "jsonwebtoken": "^8.5.1",
