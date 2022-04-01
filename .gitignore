@@ -9,7 +9,7 @@
 /bot/.idea
 # testing
 /coverage
-
+yarn.lock
 # next.js
 /.next/
 /out/
