@@ -99,7 +99,7 @@ const Botpage = ({...data}) => {
                     </div>
                    <div style={{display:'flex',flexDirection:'column'}}>
                         <a href={botdata.invite} target='_blank' rel="noreferrer"><Button variant="contained" color="primary" style={{width:'15em'}} size="large">📥 초대하기</Button></a>
-                        <Link href={`/bots/${botdata.botid}/vote`}><Button variant="contained" color="primary" style={{marginTop:'1em',width:'15em',gap:'0.2em'}} size="large">❤ 추천하기 | {botdata.hearts}</Button></Link>
+                        <Link  href={`/bots/${botdata.botid}/vote`}><Button variant="contained" color="primary" style={{marginTop:'1em',width:'15em',gap:'0.2em'}} size="large">❤ 추천하기 | {botdata.hearts}</Button></Link>
                     </div>
                 </div>
                 <Divider style={{marginTop: '1rem'}}/>
@@ -194,14 +194,14 @@ const Botpage = ({...data}) => {
                             {
                                 botdata.github && (
                                     <>
-                                        <a href={botdata.github} target="_blank" style={{color:'blue'}}><AiFillGithub/> Github</a>
+                                        <a rel="noreferrer" href={botdata.github} target="_blank" style={{color:'blue'}}><AiFillGithub/> Github</a>
                                     </>
                                 )
                             }
                             {
                                 botdata.support && (
                                     <>
-                                        <a href={botdata.support} target="_blank" style={{color:'blue'}}><RiDiscordFill/> Support</a>
+                                        <a rel="noreferrer" href={botdata.support} target="_blank" style={{color:'blue'}}><RiDiscordFill/> Support</a>
                                     </>
                                 )
                             }
