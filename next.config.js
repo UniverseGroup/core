@@ -71,12 +71,13 @@ module.exports = withPlugins([
       NORMAL_IMG: process.env.NORMAL_IMG,
       BOT_REVIEWER: process.env.BOT_REVIEWER,
       CSRF_SECRET: process.env.CSRF_SECRET,
-      images: {
-        loader: 'cloudinary',
-      },
     },
     webpack(config, options) {
       return config
+    },
+    images: {
+      loader: 'akamai',
+      path: '/',
     }
   }
 ]);
