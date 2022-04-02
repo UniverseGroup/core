@@ -163,7 +163,7 @@ const Botpage = ({...data}) => {
                             columnGap:'0.3em',
                         }}>
                             {
-                                botdata.owners.map(async (owner,index)=>{
+                                botdata.owners.map((owner,index)=>{
                                     return(
                                         <>
                                             <div onClick={()=>GotoPage('/users/'+owner.id)} className={cdstyles.Card} style={{display:'flex',justifyContent:'flex-start',alignItems:'center',marginTop:'0.5em',columnGap:"1em",border:'2px #00bfa5 solid',borderRadius:'8px',padding:'5px',width:'100%',height:'6.2em',color:'inherit'}}>
