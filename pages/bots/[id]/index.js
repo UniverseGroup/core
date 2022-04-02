@@ -25,6 +25,7 @@ import {AiFillGithub} from "react-icons/ai";
 import {RiDiscordFill} from "react-icons/ri";
 import Link from "next/link";
 import Tooltip from "@mui/material/Tooltip";
+import getUserData from "../../../lib/DiscordTool";
 const Markdownviewer = dynamic(
     () => import("../../../components/markdownviewer")
 );
@@ -229,6 +230,12 @@ export async function getServerSideProps({query,req}){
     const bot=await Bot.findOne({botid: query.id},{_id:0,token:0}).lean()
     // const pendbot = await PendBot.findOne({botid: query.id},{_id:0}).lean()
     // console.log(pendbot)
+    bot.owners.map(async (owner)=>{
+        const fetchuser = await getUserData(query.id)
+        const useravatar_format = fetchuser&&fetchuser.avatar.startsWith("a_") ? "gif" : "webp"
+        owner.avatar = fetchuser && `https://cdn.discordapp.com/avatars/${query.id}/${fetchuser.avatar}.${useravatar_format}`
+        return owner
+    })
     return {
         props: {
             bot: bot,
