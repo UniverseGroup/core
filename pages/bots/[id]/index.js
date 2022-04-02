@@ -230,11 +230,10 @@ export async function getServerSideProps({query,req}){
     const bot=await Bot.findOne({botid: query.id},{_id:0,token:0}).lean()
     // const pendbot = await PendBot.findOne({botid: query.id},{_id:0}).lean()
     // console.log(pendbot)
-    bot.owners.map(async (owner)=>{
+    bot.owners.map(async (owner,index)=>{
         const fetchuser = await getUserData(query.id)
         const useravatar_format = fetchuser&&fetchuser.avatar.startsWith("a_") ? "gif" : "webp"
-        owner.avatar = fetchuser && `https://cdn.discordapp.com/avatars/${query.id}/${fetchuser.avatar}.${useravatar_format}`
-        return owner
+        bot.owners[index].avatar = fetchuser && `https://cdn.discordapp.com/avatars/${query.id}/${fetchuser.avatar}.${useravatar_format}`
     })
     return {
         props: {
