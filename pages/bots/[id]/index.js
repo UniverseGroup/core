@@ -25,7 +25,6 @@ import {AiFillGithub} from "react-icons/ai";
 import {RiDiscordFill} from "react-icons/ri";
 import Link from "next/link";
 import Tooltip from "@mui/material/Tooltip";
-import {getUserData} from "../../../lib/DiscordTool";
 const Markdownviewer = dynamic(
     () => import("../../../components/markdownviewer")
 );
