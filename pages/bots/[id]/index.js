@@ -165,9 +165,6 @@ const Botpage = ({...data}) => {
                         }}>
                             {
                                 botdata.owners.map(async (owner,index)=>{
-                                    // const fetchuser = await getUserData(owner.id)
-                                    // const useravatar_format = fetchuser&&fetchuser.avatar.startsWith("a_") ? "gif" : "webp"
-                                    // owner.avatar = fetchuser && `https://cdn.discordapp.com/avatars/${owner.id}/${fetchuser.avatar}.${useravatar_format}`
                                     return(
                                         <>
                                             <div onClick={()=>GotoPage('/users/'+owner.id)} className={cdstyles.Card} style={{display:'flex',justifyContent:'flex-start',alignItems:'center',marginTop:'0.5em',columnGap:"1em",border:'2px #00bfa5 solid',borderRadius:'8px',padding:'5px',width:'100%',height:'6.2em',color:'inherit'}}>
@@ -231,13 +228,6 @@ export async function getServerSideProps({query,req}){
         key = null;
     }
     const bot=await Bot.findOne({botid: query.id},{_id:0,token:0}).lean()
-    // const pendbot = await PendBot.findOne({botid: query.id},{_id:0}).lean()
-    // console.log(pendbot)
-    // bot.owners.map(async (obj,index)=>{
-    //     const fetchuser = await getUserData(query.id)
-    //     const useravatar_format = fetchuser&&fetchuser.avatar.startsWith("a_") ? "gif" : "webp"
-    //     bot.owners[index].avatar = fetchuser && `https://cdn.discordapp.com/avatars/${query.id}/${fetchuser.avatar}.${useravatar_format}`
-    // })
     return {
         props: {
             bot: bot,
