@@ -18,7 +18,6 @@ async def on_ready():
 
 @client.event
 async def on_member_join(member:discord.Member):
-    print(member)
     if member.bot:
         role = client.get_guild(953953436133650462).get_role(954183713154023514)
         findid = list(db['UniverseDatabase']['pendbots'].find({'botid':str(member.id)}))

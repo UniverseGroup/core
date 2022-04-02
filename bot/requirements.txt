@@ -1,0 +1,13 @@
+aiohttp==3.7.4.post0
+async-timeout==3.0.1
+attrs==21.4.0
+certifi==2021.10.8
+chardet==4.0.0
+idna==3.3
+multidict==6.0.2
+py-cord==1.7.3
+PyJWT==2.3.0
+pymongo==4.0.2
+python-dotenv==0.20.0
+typing-extensions==4.1.1
+yarl==1.7.2
