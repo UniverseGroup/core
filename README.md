@@ -1,34 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+이 레포는 [UNIVERSElist](https://universelist.kr)의 오픈소스입니다.
 
-## Getting Started
+라이센스는 [AGPL3.0](https://www.gnu.org/licenses/agpl-3.0.html) 을 따릅니다.
 
-First, run the development server:
+<p align="center">
+    <a href="https://universelist.kr"><img src="/logo.png" alt="UNIVERSElist" width="200" height="200"></a>
+    <br>UNIVERSE
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
+# UNIVERSE
+> 다양한 봇과 서버가 모여 만들어진 공간.
+
+# 로컬환경에서 사용하기
+```
+> git clone https://github.com/UniverseGroup/core.git
+> cd core
+> npm install # or yarn
+> npm start build # or yarn build
+> npm start # or yarn start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```
+# .env
+CLIENT_ID= 
+CLIENT_SECRET=
+REDIRECT_URL=http://localhost:3000/api/callback
+JWT_KEY=
+BASE_URL=http://localhost:3000/
+MONGODB_URI=
+BOT_TOKEN=
+STAFF_CHANNEL = 
+STAFF_ROLE = 
+OFFICIAL_GUILDID=
+HCAPTCHA_SITE_KEY= 
+HCAPTCHA_SECRET_KEY= 
+NORMAL_IMG = 
+BOT_REVIEWER = 
+CSRF_SECRET=
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+# 기여하기
+- 먼저 이 레포를 fork해주세요.
+- fork된 레포를 클론하거나 zip으로 내려받아 에디터로 수정해주세요.
+- 수정된 내용을 저장하고 이 곳을 향해 push해주세요.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# 미리보기
+![main](https://media.discordapp.net/attachments/845663421662887966/960477405452070982/unknown.png?width=544&height=632)
