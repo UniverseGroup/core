@@ -53,6 +53,6 @@ const PendBotSchema = new mongoose.Schema({
         default: false
     },
 
-},{_id:false})
+},)
 
 export default mongoose.models.PendBot || mongoose.model('PendBot', PendBotSchema)

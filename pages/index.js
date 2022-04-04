@@ -11,6 +11,7 @@ import {BiRightArrowAlt} from "react-icons/bi";
 import Link from "next/link";
 const BotCard = dynamic(() => import("../components/BotCard"));
 const ResponsiveAppBar = dynamic(() => import("../components/navbar"));
+const SearchBar = dynamic(() => import("../components/Search"));
 export async function getServerSideProps(ctx) {
   let key = null;
   await dbConnect();
@@ -44,7 +45,10 @@ export default function Home({...key}) {
             다양한 봇과 서버가 모여 만들어진 공간.<br/>
           이곳{" "}<strong>UNIVERSE</strong>에서 다양한 봇과 서버를 찾아보세요!
         </Typography>
-
+        {/*<section style={{display:'flex',flexWrap:'wrap',justifyContent:'center',position:'relative'}}>*/}
+        {/*  <SearchBar/>*/}
+        {/*</section>*/}
+        <SearchBar/>
         <div style={{display:'inline-grid',marginTop: '2rem',marginBottom: '2rem'}}>
           <Typography variant="h4" sx={{fontFamily: 'Do Hyeon'}}>
             💎 초기 등록봇

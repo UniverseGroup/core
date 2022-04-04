@@ -1,10 +1,7 @@
-// import ResponsiveAppBar from "../../../components/navbar";
-// import StickyFooter from "../../../components/Footer";
 import cookie from "cookie";
 import jwt from "jsonwebtoken";
 import Bot from "../../../models/bot";
 import dbConnect from "../../../lib/dbConnect";
-import {useRouter} from "next/router";
 import styles from "../../../styles/Addbot.module.css";
 import cdstyles from "../../../styles/Users.module.css";
 import Typography from "@mui/material/Typography";
@@ -14,9 +11,7 @@ import {faCircle} from "@fortawesome/free-solid-svg-icons/faCircle";
 import {BiBadgeCheck} from "react-icons/bi";
 import Button from "@mui/material/Button";
 import {Alert, AlertTitle, Divider} from "@mui/material";
-// import Markdownviewer from "../../../components/markdownviewer";
 import Box from "@mui/material/Box";
-import {AiOutlineHeart} from "react-icons/ai";
 import HeadTag from "../../../components/headtag";
 import Image from "next/image";
 import dynamic from "next/dynamic";
@@ -29,22 +24,10 @@ const Markdownviewer = dynamic(
     () => import("../../../components/markdownviewer")
 );
 const ResponsiveAppBar = dynamic(() => import("../../../components/navbar"));
-// const StickyFooter = dynamic(() => import("../../../components/Footer"));
 const Botpage = ({...data}) => {
     console.log(data);
     const botdata =data.bot
     const userdata=data.user
-    const router = useRouter()
-    const Topto = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth' // for smoothly scrolling
-        });
-    }
-    const GotoPage = (url) => {
-
-        router.push(url, url, { shallow: true }).then(()=>{Topto()})
-    };
     return(
         <div style={{padding:'0'}}>
             <ResponsiveAppBar userdata={userdata}/>
@@ -99,7 +82,7 @@ const Botpage = ({...data}) => {
                     </div>
                    <div style={{display:'flex',flexDirection:'column'}}>
                         <a href={botdata.invite} target='_blank' rel="noreferrer"><Button variant="contained" color="primary" style={{width:'15em'}} size="large">📥 초대하기</Button></a>
-                        <Link  href={`/bots/${botdata.botid}/vote`}><Button variant="contained" color="primary" style={{marginTop:'1em',width:'15em',gap:'0.2em'}} size="large">❤ 추천하기 | {botdata.hearts}</Button></Link>
+                        <Link  passHref href={`/bots/${botdata.botid}/vote`}><Button variant="contained" color="primary" style={{marginTop:'1em',width:'15em',gap:'0.2em'}} size="large">❤ 추천하기 | {botdata.hearts}</Button></Link>
                     </div>
                 </div>
                 <Divider style={{marginTop: '1rem'}}/>
@@ -166,12 +149,14 @@ const Botpage = ({...data}) => {
                                 botdata.owners.map((owner,index)=>{
                                     return(
                                         <>
-                                            <div onClick={()=>GotoPage('/users/'+owner.id)} className={cdstyles.Card} style={{display:'flex',justifyContent:'flex-start',alignItems:'center',marginTop:'0.5em',columnGap:"1em",border:'2px #00bfa5 solid',borderRadius:'8px',padding:'5px',width:'100%',height:'6.2em',color:'inherit'}}>
-                                                <Avatar sx={{ width: 80, height: 80,borderRadius:'50' }} src={owner.avatar+"?size=256"}/>
-                                                <div style={{flexGrow:'1',textAlign:'left',paddingLeft:'1.25em',paddingRight:'1.25em',paddingBottom:'3em',paddingTop:'3em'}}>
-                                                    <Typography variant="h6" style={{fontWeight:'bold'}}>{owner.username}#{owner.discriminator}</Typography>
+                                            <Link href={'/users/'+owner.id} passHref>
+                                                <div className={cdstyles.Card} style={{display:'flex',justifyContent:'flex-start',alignItems:'center',marginTop:'0.5em',columnGap:"1em",border:'2px #00bfa5 solid',borderRadius:'8px',padding:'5px',width:'100%',height:'6.2em',color:'inherit'}}>
+                                                    <Avatar sx={{ width: 80, height: 80,borderRadius:'50' }} src={owner.avatar+"?size=256"}/>
+                                                    <div style={{flexGrow:'1',textAlign:'left',paddingLeft:'1.25em',paddingRight:'1.25em',paddingBottom:'3em',paddingTop:'3em'}}>
+                                                        <Typography variant="h6" style={{fontWeight:'bold'}}>{owner.username}#{owner.discriminator}</Typography>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </Link>
                                         </>
                                     )
                                 })

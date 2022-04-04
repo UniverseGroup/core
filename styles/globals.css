@@ -16,6 +16,12 @@ p{
   box-sizing: border-box;
 }
 
+.searchresult{
+  transition: all 0.17s ease-in-out;
+}
+.searchresult:hover{
+  background-color: #adc6ff;
+}
 .checkmark__circle {
   stroke-dasharray: 166;
   stroke-dashoffset: 166;

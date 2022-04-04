@@ -30,7 +30,7 @@ const BotCard = ({manage=false,bot,mode=undefined})=>{
                         console.log(bot)
                         if(bot.approved){
                             return(
-                                <Link href={`/bots/${bot.botid}`} key={index}>
+                                <Link passHref href={`/bots/${bot.botid}`} key={index}>
                                     <div className="botcard">
                                         <div className="botcard__image">
                                             {/* {

@@ -15,7 +15,7 @@ import {useState} from "react";
 import {useRouter} from "next/router";
 import Link from "next/link";
 import {discordUrls} from "../lib/DiscordTool"
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = [{name:'Docs',url:'/docs'}, {name:'BotList',url:'/bots'}, {name:'ServerList',url:'/servers'}];
 const settings = [{name:'Profile',url:'/users/',as:undefined,color:null}, {name:'AddBot',url:'/addbot',as:undefined,color:null}, {name:'Logout',url:discordUrls.logout,as:undefined,color:'red'}];
 const ResponsiveAppBar = ({userdata}) => {
     console.log(userdata);
@@ -83,13 +83,13 @@ const ResponsiveAppBar = ({userdata}) => {
                         {settings.map((setting,index) =>{
                             if(setting.url==='/users/'){
                                 return (
-                                    <Link href={setting.url+userdata.id} shallow={true} ><MenuItem key={index} >
+                                    <Link passHref href={setting.url+userdata.id} shallow={true} ><MenuItem key={index} >
                                         <Typography textAlign="center" color={setting.color}>{setting.name}</Typography>
                                     </MenuItem></Link>
                                 )
                             }
                             return(
-                                <Link key={index} href={setting.url} shallow={true} ><MenuItem key={index}>
+                                <Link passHref key={index} href={setting.url} shallow={true} ><MenuItem key={index}>
                                         <Typography textAlign="center" color={setting.color}>{setting.name}</Typography>
                                 </MenuItem></Link>
                                 )
@@ -104,7 +104,7 @@ const ResponsiveAppBar = ({userdata}) => {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Link href="/" shallow={true}><Typography
+                    <Link passHref href="/" shallow={true}><Typography
                         variant="h4"
                         noWrap
                         component="div"
@@ -142,29 +142,31 @@ const ResponsiveAppBar = ({userdata}) => {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                            {pages.map((page,index) => (
+                                <MenuItem key={index} onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center">{page.name}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
                     </Box>
-                    <a onClick={()=>GotoPage('/')} style={{margin:'auto'}}><Typography
+                    <Link href={'/'} passHref><Typography
                         variant="h6"
                         component="div"
                         sx={{ display: { xs: 'flex', md: 'none' },fontFamily: 'Do Hyeon',cursor:'pointer',justifyContent:'center',alignItems:'center' }}
                     >
                         <strong>UNIVERSE</strong>
-                    </Typography></a>
+                    </Typography></Link>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block',fontFamily: 'Do Hyeon' }}
-                            >
-                                {page}
-                            </Button>
+                            <>
+                                <Link href={page.url} passHref><Button
+                                    onClick={handleCloseNavMenu}
+                                    sx={{ my: 2, color: 'white', display: 'block',fontFamily: 'Do Hyeon' }}
+                                >
+                                    {page.name}
+                                </Button></Link>
+                            </>
+
                         ))}
                     </Box>
 

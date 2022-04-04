@@ -42,6 +42,6 @@ const UserSchema = new mongoose.Schema({
         default: []
     },
 
-},{_id:false})
+},)
 
 export default mongoose.models.User || mongoose.model('User', UserSchema)
