@@ -1,5 +1,5 @@
 import dbConnect from '../../lib/dbConnect';
-import Bot from '../../models/Bot';
+import Bot from '../../models/bot';
 import {getUserData} from "../../lib/DiscordTool"
 
 
