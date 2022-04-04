@@ -2,6 +2,7 @@
 
 라이센스는 [AGPL3.0](https://www.gnu.org/licenses/agpl-3.0.html) 을 따릅니다.
 
+또한 이 레포는 [koreanbots/core](https://github.com/koreanbots/core) 의 일부분을 참조하였습니다. (소스파일 상단에 있는 주석을 참고)
 <p align="center">
     <a href="https://universelist.kr"><img src="/logo.png" alt="UNIVERSElist" width="200" height="200"></a>
     <br>UNIVERSE
