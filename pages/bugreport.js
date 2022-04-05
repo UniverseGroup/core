@@ -63,7 +63,7 @@ const about = ({ ...data }) => {
                     <Typography variant="h3" sx={{ fontFamily: 'Do Hyeon', marginTop: '0.5em'  }}>
                         취약점에 포함되지 않는 사항
                     </Typography>
-                    <Typography variant="h4" sx={{ fontFamily: 'Do Hyeon', marginTop: '0.5em' }}>
+                    <Typography variant="h5" sx={{ fontFamily: 'Do Hyeon', marginTop: '0.5em' }}>
                         <li>이미 팀 내부에서 해당 취약점을 인지하고 있는 경우</li>
                         <li>Brute force 공격</li>
                         <li>Clickjacking</li>
