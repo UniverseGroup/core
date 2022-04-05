@@ -3,16 +3,12 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDiscord, faGithub} from "@fortawesome/free-brands-svg-icons";
-import {useRouter} from "next/router";
 import styles from '../styles/Footer.module.css';
+import Link from "next/link"
+
 export default function StickyFooter() {
-    const router = useRouter();
-    const GotoPage = (url) => {
-        router.replace(url, url, { shallow: true });
-    };
     return (
         <>
             <Box
@@ -36,14 +32,14 @@ export default function StickyFooter() {
                         </Typography>
                         <div style={{display:'flex',justifyContent:'flex-end',alignItems:'center'}}>
                             <div style={{marginRight:'auto'}}>
-                                <FontAwesomeIcon icon={faGithub} size="2x" color="#ffffff"/>
-                                <FontAwesomeIcon icon={faDiscord} size="2x" color="#ffffff" style={{marginLeft:'0.3em'}}/>
+                                <Link href="https://github.com/UniverseGroup" passHref><a target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faGithub} size="2x" color="#ffffff" style={{cursor:'pointer'}}/></a></Link>
+                                <Link href="/discord" passHref><FontAwesomeIcon icon={faDiscord} size="2x" color="#ffffff" style={{marginLeft:'0.3em',cursor:'pointer'}}/></Link>
                             </div>
                         </div>
                         <Typography variant="body2" component="div"
                                     sx={{ mr: 2, display: 'flex' ,fontFamily: 'Do Hyeon',color:'#ffffff',gap:'0.3em'}}>
                             {'Copyright © '}
-                            <Link color="inherit" href="https://mui.com/">
+                            <Link color="inherit" href="https://universelist.kr/">
                                 UNIVERSE
                             </Link>
                             {new Date().getFullYear()}
@@ -57,10 +53,10 @@ export default function StickyFooter() {
                         </Typography>
                         <Typography variant="h6" component="div"
                                     sx={{fontFamily: 'Do Hyeon',color:'#ffffff',lineHeight:'1'}}>
-                            <li onClick={()=>GotoPage('/')} className={styles.link}>소개</li>
-                            <li className={styles.link}>채용</li>
+                            <Link href="/about" passHref><li className={styles.link}>소개</li></Link>
+                            <Link href="https://career-univerlist.vercel.app/" passHref><a target="_blank" rel="noopener noreferrer"><li className={styles.link}>채용</li></a></Link>
                             <li className={styles.link}>문서</li>
-                            <li className={styles.link}>버그제보</li>
+                            <Link href="/bugreport" passHref><li className={styles.link}>버그제보</li></Link>
                         </Typography>
                     </div>
                     <div style={{display:'grid',marginTop:'1.5em'}}>
@@ -70,10 +66,9 @@ export default function StickyFooter() {
                         </Typography>
                         <Typography variant="h6" component="div"
                                     sx={{fontFamily: 'Do Hyeon',color:'#ffffff',lineHeight:'1'}}>
-                            <a onClick={()=>GotoPage('/')}><li className={styles.link}>서비스 이용약관</li></a>
-                            <li className={styles.link}>개인정보취급방침</li>
-                            <li className={styles.link}>가이드라인</li>
-                            <li className={styles.link}>BugReport</li>
+                            <Link href="/tos" passHref><li className={styles.link}>서비스 이용약관</li></Link>
+                            <Link href="/privacy" passHref><li className={styles.link}>개인정보취급방침</li></Link>
+                            <Link href="/guidelines" passHref><li className={styles.link}>가이드라인</li></Link>
                         </Typography>
                     </div>
                 </div>
