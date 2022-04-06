@@ -15,7 +15,7 @@ import {useState} from "react";
 import {useRouter} from "next/router";
 import Link from "next/link";
 import {discordUrls} from "../lib/DiscordTool"
-const pages = [{name:'Docs',url:'/docs'}, {name:'BotList',url:'/bots'}, {name:'ServerList',url:'/servers'}];
+const pages = [{name:'Developers',url:'/developers'}, {name:'BotList',url:'/bots'}, {name:'ServerList',url:'/servers'}];
 const settings = [{name:'Profile',url:'/users/',as:undefined,color:null}, {name:'AddBot',url:'/addbot',as:undefined,color:null}, {name:'Logout',url:discordUrls.logout,as:undefined,color:'red'}];
 const ResponsiveAppBar = ({userdata}) => {
     console.log(userdata);
