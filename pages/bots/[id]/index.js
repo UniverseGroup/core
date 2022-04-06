@@ -32,9 +32,9 @@ const statuskr = {
 }
 const statusColor = {
     'online':'#00bfa5',
-    'idle':'#643da7',
-    'dnd':'#643da7',
-    'offline':'#643da7',
+    'idle':'#faa61a',
+    'dnd':'#f04747',
+    'offline':'#747f8d',
     'streaming':'#643da7'
 }
 const ResponsiveAppBar = dynamic(() => import("../../../components/navbar"));
