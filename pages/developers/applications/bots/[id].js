@@ -56,6 +56,7 @@ const application = ({ ...data }) => {
     const csrf = data.csrf
     const [show, setShow] = useState(false)
     const [isopen, setIsopen] = useState(false)
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [copied, setCopied] = useCopyClipboard(botdata.token, {
         successDuration: 2000
     })
