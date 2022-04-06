@@ -107,8 +107,11 @@ async def deny(ctx,uniqueid,*,reason):
         db['UniverseDatabase']['bots'].delete_one({"botid":data["botid"]})
         db['UniverseDatabase']['users'].update_one({'userid': str(owner.id)},
                                                    {"$pull": {"bots": {"botid":str(userbot.id)}}})
-        member_bot = ctx.guild.get_member(int(data['botid']))
-        await member_bot.kick()
+        try:
+            member_bot = ctx.guild.get_member(int(data['botid']))
+            await member_bot.kick()
+        except:
+            pass
         try:
             await owner.send(f'신청하신봇 ( **{userbot.name}#{userbot.discriminator}** )(이)가 반려되었습니다.\n\n반려사유 - {reason}')
         except:
