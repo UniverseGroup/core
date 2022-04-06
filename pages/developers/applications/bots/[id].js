@@ -52,8 +52,8 @@ export async function getServerSideProps({ req, res, query }) {
 }
 const application = ({ ...data }) => {
     const userdata = data.user
-    const [botdata,setBotdata] = useState(data.bots)
     const csrf = data.csrf
+    const [botdata,setBotdata] = useState(data.bots)
     const [show, setShow] = useState(false)
     const [isopen, setIsopen] = useState(false)
     // eslint-disable-next-line react-hooks/rules-of-hooks
