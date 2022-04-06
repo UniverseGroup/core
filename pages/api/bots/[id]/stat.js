@@ -19,7 +19,7 @@ export default async (req,res)=>{
                 return
             }
             try {
-                await limiter.check(res,1,bot_token);
+                await limiter.check(res,2,bot_token);
             } catch (error) {
                 console.log(error)
                 return res.status(429).json({
@@ -27,7 +27,7 @@ export default async (req,res)=>{
                     message:'Too many requests'
                 })
             }
-            if(!servers&&!users) return res.status(400).json({
+            if(!servers) return res.status(400).json({
                 status:400,
                 message:'Bad request'
             })
@@ -36,17 +36,17 @@ export default async (req,res)=>{
                 status:404,
                 message:'Bot not found'
             })
-            const newtimes = new Date()
-            const format_time = `${newtimes.getMonth()+1}/${newtimes.getDate()}`
+            // const newtimes = new Date()
+            // const format_time = `${newtimes.getMonth()+1}/${newtimes.getDate()}`
             await Bot.findOneAndUpdate({token:bot_token},{$set:{
                 guilds:servers,
                 users:users,
             }},{new:true})
-            if(commands){
-                await Bot.findOneAndUpdate({token:bot_token},{$push:{
-                        commands: {commands:commands,time:format_time}
-                    }},{new:true})
-            }
+            // if(commands){
+            //     await Bot.findOneAndUpdate({token:bot_token},{$push:{
+            //             commands: {commands:commands,time:format_time}
+            //         }},{new:true})
+            // }
             res.status(200).json({
                 status:200,
                 message:'Success'

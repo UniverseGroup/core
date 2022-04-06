@@ -73,7 +73,7 @@ export default async (req,res)=>{
                         category:body.category,
                         website:body.website,
                         github:body.github,
-                        support:body.support,
+                        support:body.serverurl,
                         discordVerified:(botdata.public_flags===65536),
                     }
                 )
