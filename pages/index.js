@@ -22,19 +22,20 @@ export async function getServerSideProps(ctx) {
   } catch {
     key = null;
   }
-  const bots = await Bot.find({approved:true},{_id:0,token:0}).limit(5).lean();
-  console.log(bots);
+  const earlybot = await Bot.find({approved:true,badges:{$in:['EarlyBot']}},{_id:0,token:0}).lean();
+  const normalbot = await Bot.find({approved:true,badges:{$nin:['EarlyBot']}},{_id:0,token:0}).limit(5).lean();
   return {
     props: {
       user: key,
-      bot: bots
+      earlybot: earlybot,
+      normalbot: normalbot
     }
   }
 }
 export default function Home({...key}) {
   const data = key.user;
-  const botdata =key.bot
-  console.log(botdata)
+  const earlybot =key.earlybot
+  const normalbot = key.normalbot
   return (
     <div className={styles.container}>
       <ResponsiveAppBar userdata={data}/>
@@ -54,13 +55,13 @@ export default function Home({...key}) {
             💎 초기 등록봇
           </Typography>
           <div className={styles.grid} style={{gap:'1em'}}>
-            <BotCard bot={botdata} mode="EarlyBot"/>
+            <BotCard bot={earlybot} mode="EarlyBot"/>
           </div>
           <Typography variant="h4" sx={{fontFamily: 'Do Hyeon', marginTop:'3em'}}>
             🤖 봇 리스트
           </Typography>
           <div className={styles.grid} style={{gap:'1em'}}>
-            <BotCard bot={botdata}/>
+            <BotCard bot={normalbot}/>
             <Link href={`/bots`}>
               <div className="anncard">
                 <div className="anncard__body" style={{textAlign:'center',marginTop:'50%',marginBottom:'50%',color:"#7289da"}}>

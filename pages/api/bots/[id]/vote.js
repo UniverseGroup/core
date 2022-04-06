@@ -47,8 +47,8 @@ export default async (req,res)=>{
         case 'GET':
             try{
                 const _user = await User.findOne({userid:userid}).lean()
-                if(!_user || !_user.hearts.includes(id)) return res.status(400).json({status:400,message:"You have not voted for this bot"})
-                if(_user.hearts.includes(id)) return res.status(200).json({status:200,message:"You have already voted for this bot"})
+                if(!_user || !_user.hearts.includes(id)) return res.status(400).json({status:400,message:"This User doesnot voted for this bot"})
+                if(_user.hearts.includes(id)) return res.status(200).json({status:200,message:"This User have already voted for this bot"})
             } catch (e) {
                 res.status(400).json({message:e.message})
             }

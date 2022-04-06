@@ -230,3 +230,14 @@ p{
   margin: 1em;
   margin-bottom: auto;
 }
+
+.appcard {
+  transition: all 0.17s ease-in-out;
+}
+
+.appcard:hover{
+  -webkit-box-shadow: 0px 10px 21px 5px rgba(0,0,0,0.36);
+-moz-box-shadow: 0px 10px 21px 5px rgba(0,0,0,0.36);
+box-shadow: 0px 10px 21px 5px rgba(0,0,0,0.36);
+  transform: translatey(-10px);
+}
