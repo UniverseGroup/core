@@ -32,7 +32,7 @@ export async function getServerSideProps({req,res,query}) {
         }
     }
 }
-const application = ({...data}) =>{
+const Application = ({...data}) =>{
     const userdata = data.user
     const botdata = data.bots
     return(
@@ -83,4 +83,4 @@ const application = ({...data}) =>{
     )
 
 }
-export default application;
+export default Application;

@@ -50,7 +50,7 @@ export async function getServerSideProps({ req, res, query }) {
         }
     }
 }
-const application = ({ ...data }) => {
+const BotApplication = ({ ...data }) => {
     const userdata = data.user
     const csrf = data.csrf
     const [botdata,setBotdata] = useState(data.bots)
@@ -170,4 +170,4 @@ const application = ({ ...data }) => {
     )
 
 }
-export default application;
+export default BotApplication;
