@@ -22,6 +22,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Link from "next/link";
+import PermissionError from "../../../403";
 import {MdOutlineKeyboardBackspace} from "react-icons/md";
 const ResponsiveAppBar = dynamic(() => import("../../../../components/navbar"));
 import styles from '../../../../styles/Home.module.css'
