@@ -64,7 +64,7 @@ const Botpage = ({...data}) => {
                         <Image quality={100} width={256} height={256} src={`/api/imageproxy?url=${encodeURIComponent(botdata.botavatar+"?size=512")}`}/>
                         <div style={{flexGrow:'1',textAlign:'left',paddingLeft:'1.25em',paddingRight:'1.25em',paddingBottom:'3em',paddingTop:'3em'}}>
                             <div style={{padding:'1em',border:'2px #00bfa5 solid',borderRadius:'0.8em',width:'7em',height:'1.3em',display:'flex',justifyContent:'flex-start',alignItems:'center',columnGap:'0.2em'}}>
-                                <FontAwesomeIcon icon={faCircle} style={{color:statusColor[botdata.status],border:'2px #000000 solid',borderRadius:'100%'}}/><strong>statuskr[botdata.status]</strong>
+                                <FontAwesomeIcon icon={faCircle} style={{color:statusColor[botdata.status],border:'2px #000000 solid',borderRadius:'100%'}}/><strong>{statuskr[botdata.status]}</strong>
                             </div>
                             <Typography variant="h4" style={{fontWeight:'bold'}}>{botdata.botname}</Typography>
                             <Typography variant="h6" style={{fontWeight:'bold'}}>{botdata.slug}</Typography>
