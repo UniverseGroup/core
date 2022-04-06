@@ -7,13 +7,30 @@ from pymongo import MongoClient
 import dotenv
 import certifi
 import jwt
+import asyncio
 ca = certifi.where()
 dotenv.load_dotenv()
 INTENTS = discord.Intents.all()
 client = commands.Bot(command_prefix='!',intents=INTENTS)
 db = MongoClient(os.getenv('MONGODB_URI'), tlsCAFile=ca)
+
+async def update_status():
+    await client.wait_until_ready()
+    while not client.is_closed():
+        bots = db['UniverseDatabase']['bots'].find({})
+        guild = client.get_guild(953953436133650462)
+        for bot in bots:
+            try:
+                botuser = guild.get_member(int(bot['botid']))
+                db['UniverseDatabase']['bots'].update_one({'botid':bot['botid']},{'$set':{'status':str(botuser.status)}})
+            except:
+                db['UniverseDatabase']['bots'].update_one({'botid':bot['botid']},{'$set':{'status':'offline'}})
+        await asyncio.sleep(60)
+
+
 @client.event
 async def on_ready():
+    client.loop.create_task(update_status())
     print('Bot is ready')
 
 @client.event

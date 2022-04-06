@@ -23,6 +23,20 @@ import Tooltip from "@mui/material/Tooltip";
 const Markdownviewer = dynamic(
     () => import("../../../components/markdownviewer")
 );
+const statuskr = {
+    'online':'온라인',
+    'idle':'자리비움',
+    'dnd':'다른 용무중',
+    'offline':'오프라인',
+    'streaming':'스트리밍'
+}
+const statusColor = {
+    'online':'#00bfa5',
+    'idle':'#643da7',
+    'dnd':'#643da7',
+    'offline':'#643da7',
+    'streaming':'#643da7'
+}
 const ResponsiveAppBar = dynamic(() => import("../../../components/navbar"));
 const Botpage = ({...data}) => {
     console.log(data);
@@ -50,7 +64,7 @@ const Botpage = ({...data}) => {
                         <Image quality={100} width={256} height={256} src={`/api/imageproxy?url=${encodeURIComponent(botdata.botavatar+"?size=512")}`}/>
                         <div style={{flexGrow:'1',textAlign:'left',paddingLeft:'1.25em',paddingRight:'1.25em',paddingBottom:'3em',paddingTop:'3em'}}>
                             <div style={{padding:'1em',border:'2px #00bfa5 solid',borderRadius:'0.8em',width:'7em',height:'1.3em',display:'flex',justifyContent:'flex-start',alignItems:'center',columnGap:'0.2em'}}>
-                                <FontAwesomeIcon icon={faCircle} style={{color:'#00bfa5',border:'2px #000000 solid',borderRadius:'100%'}}/><strong>온라인</strong>
+                                <FontAwesomeIcon icon={faCircle} style={{color:statusColor[botdata.status],border:'2px #000000 solid',borderRadius:'100%'}}/><strong>statuskr[botdata.status]</strong>
                             </div>
                             <Typography variant="h4" style={{fontWeight:'bold'}}>{botdata.botname}</Typography>
                             <Typography variant="h6" style={{fontWeight:'bold'}}>{botdata.slug}</Typography>
