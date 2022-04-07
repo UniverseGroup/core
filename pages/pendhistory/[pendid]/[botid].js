@@ -23,6 +23,7 @@ import {useRouter} from "next/router";
 import {BsCheck2Circle} from "react-icons/bs";
 import Link from "next/link";
 import {discordUrls} from "../../../lib/DiscordTool"
+import { setNextUrl } from "../../../lib/_nextUrl";
 const ResponsiveAppBar = dynamic(() => import("../../../components/navbar"));
 const Markdownviewer = dynamic(() => import("../../../components/markdownviewer"));
 export async function getServerSideProps({req, res, query}) {
@@ -34,6 +35,7 @@ export async function getServerSideProps({req, res, query}) {
         key = jwt.verify(user, process.env.JWT_KEY)
     } catch {
         // key = null;
+        setNextUrl(req, res, `/pendhistory/${query?.pendid}/${query?.botid}`)
         res.writeHead(302, { Location: discordUrls.login })
         return res.end()
     }

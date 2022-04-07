@@ -24,6 +24,7 @@ import AlertTitle from '@mui/material/AlertTitle';
 import Link from "next/link";
 import PermissionError from "../../../403";
 import {MdOutlineKeyboardBackspace} from "react-icons/md";
+import { setNextUrl } from "../../../lib/_nextUrl";
 const ResponsiveAppBar = dynamic(() => import("../../../../components/navbar"));
 import styles from '../../../../styles/Home.module.css'
 export async function getServerSideProps({ req, res, query }) {
@@ -34,6 +35,7 @@ export async function getServerSideProps({ req, res, query }) {
         const user = cookies.token;
         key = jwt.verify(user, process.env.JWT_KEY)
     } catch (e) {
+        setNextUrl(req, res, '/developers/applications/'+query.id)
         res.writeHead(302, { Location: discordUrls.login })
         res.end()
     }

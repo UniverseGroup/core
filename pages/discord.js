@@ -10,9 +10,10 @@ const ResponsiveAppBar = dynamic(() => import("../components/navbar"));
 const StickyFooter = dynamic(() => import("../components/Footer"));
 // const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'));
 // import {useState,useEffect} from "react";
-import {JoinServer} from "../lib/DiscordTool";
+import {JoinServer,discordUrls} from "../lib/DiscordTool";
 // import fetch from "isomorphic-fetch";
 import {useRouter} from "next/router";
+import { setNextUrl } from "../lib/_nextUrl";
 export async function getServerSideProps(ctx) {
     let key = null;
     let joinstate = null;
@@ -22,7 +23,8 @@ export async function getServerSideProps(ctx) {
         key = jwt.verify(user, process.env.JWT_KEY)
     } catch {
         // key = null;
-        ctx.res.writeHead(302, { Location: `https://discord.com/api/oauth2/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}&response_type=code&scope=guilds%20guilds.join%20identify%20email` })
+        setNextUrl(ctx.req, ctx.res, '/discord')
+        ctx.res.writeHead(302, { Location: discordUrls.login })
         ctx.res.end()
     }
     try {

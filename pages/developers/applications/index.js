@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import { discordUrls } from '../../../lib/DiscordTool';
 import Button from "@mui/material/Button";
 import Link from 'next/link'
+import { setNextUrl } from "../../../lib/_nextUrl";
 const ResponsiveAppBar = dynamic(() => import("../../../components/navbar"));
 import styles from '../../../styles/Home.module.css'
 export async function getServerSideProps({req,res,query}) {
@@ -19,6 +20,7 @@ export async function getServerSideProps({req,res,query}) {
         const user = cookies.token;
         key = jwt.verify(user, process.env.JWT_KEY)
     } catch(e) {
+        setNextUrl(req, res, '/developers')
         res.writeHead(302, { Location: discordUrls.login })
         res.end()
     }

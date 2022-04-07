@@ -17,6 +17,7 @@ import {useRouter} from "next/router";
 import {useRef, useState} from "react";
 import {MdOutlineKeyboardBackspace} from "react-icons/md";
 import Link from "next/link";
+import { setNextUrl } from "../../../lib/_nextUrl";
 export async function getServerSideProps({ req, res, query }) {
     let key = null;
     await dbConnect()
@@ -26,6 +27,7 @@ export async function getServerSideProps({ req, res, query }) {
         key = jwt.verify(user, process.env.JWT_KEY)
     } catch {
         // key = null;
+        setNextUrl(req, res, '/bots/'+query.id+'/vote')
         res.writeHead(302, { Location: discordUrls.login })
         return res.end()
     }

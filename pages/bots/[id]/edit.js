@@ -43,6 +43,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { IoMdPersonAdd } from "react-icons/io";
 import { RiUserSearchLine } from "react-icons/ri";
 import PermissionError from "../../403";
+import { setNextUrl } from "../../../lib/_nextUrl";
 // const Picker = dynamic(
 //     () => import("emoji-mart")
 // );
@@ -65,6 +66,7 @@ export async function getServerSideProps({ req, res, query }) {
         key = jwt.verify(user, process.env.JWT_KEY)
     } catch {
         // key = null;
+        setNextUrl(req,res, "/bots/"+query.id+"/edit")
         res.writeHead(302, { Location: discordUrls.login })
         res.end()
     }

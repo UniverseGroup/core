@@ -27,6 +27,7 @@ import HeadTag from "../components/headtag";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import StickyFooter from "../components/Footer";
 import {discordUrls} from "../lib/DiscordTool"
+import { setNextUrl } from "../lib/_nextUrl";
 // const Picker = dynamic(
 //     () => import("emoji-mart").then(({ Picker }) => Picker),
 //     { ssr: false }
@@ -45,6 +46,7 @@ export async function getServerSideProps(ctx) {
         key = jwt.verify(user, process.env.JWT_KEY)
     } catch {
         // key = null;
+        setNextUrl(ctx.req,ctx.res,'/addbot')
         ctx.res.writeHead(302, { Location: discordUrls.login })
         ctx.res.end()
     }

@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import dbConnect from "../../lib/dbConnect";
 import User from "../../models/user";
 import {discordUrls} from "../../lib/DiscordTool"
+import { getNextUrl,destoryNextUrl } from '../../lib/_nextUrl';
 export default async (req, res) => {
     await dbConnect()
     const code = req.query.code;
@@ -48,9 +49,11 @@ export default async (req, res) => {
     userinfo.permission = userdata && userdata.permissions
     console.log(userinfo)
     const user = jwt.sign(userinfo, process.env.JWT_KEY);
-    const cookie = new Cookies(req, res);
-    cookie.set('token', user, {
+    const cookies = new Cookies(req, res);
+    cookies.set('token', user, {
         httpOnly: false
     })
-    res.redirect('../../')
+    const next_url = getNextUrl(req, res);
+    destoryNextUrl(req, res);
+    res.redirect(next_url)
 }
