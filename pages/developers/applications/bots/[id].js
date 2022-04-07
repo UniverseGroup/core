@@ -24,7 +24,7 @@ import AlertTitle from '@mui/material/AlertTitle';
 import Link from "next/link";
 import PermissionError from "../../../403";
 import {MdOutlineKeyboardBackspace} from "react-icons/md";
-import { setNextUrl } from "../../../lib/_nextUrl";
+import { setNextUrl } from "../../../../lib/_nextUrl";
 const ResponsiveAppBar = dynamic(() => import("../../../../components/navbar"));
 import styles from '../../../../styles/Home.module.css'
 export async function getServerSideProps({ req, res, query }) {
