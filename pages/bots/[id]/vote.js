@@ -3,7 +3,7 @@ import cookie from "cookie";
 import jwt from "jsonwebtoken";
 import Bot from "../../../models/bot";
 import User from "../../../models/user"
-import discordUrls from "../../../lib/DiscordTool";
+import { discordUrls } from "../../../lib/DiscordTool"
 import ResponsiveAppBar from "../../../components/navbar";
 import StickyFooter from "../../../components/Footer";
 import styles from "../../../styles/Home.module.css";
