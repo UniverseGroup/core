@@ -42,7 +42,7 @@ export default class MyDocument extends Document {
                         }}
                     />
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1754308294123021"
-                    crossorigin="anonymous"></script>
+                    crossOrigin="anonymous"></script>
                     {/* Inject MUI styles first to match with the prepend: true configuration. */}
                     {this.props.emotionStyleTags}
                 </Head>
