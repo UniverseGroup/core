@@ -3,7 +3,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import theme from '../src/theme';
 import createEmotionCache from '../src/createEmotionCache';
-
+import { GA_TRACKING_ID } from '../lib/gtag'
 export default class MyDocument extends Document {
     render() {
         return (
@@ -24,6 +24,25 @@ export default class MyDocument extends Document {
                           rel="stylesheet"/>
                     <meta httpEquiv="Pragma" content="no-cache"/>
                     <meta httpEquiv="Expires" content="-1"/>
+                    <script
+                        async
+                        src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+                    />
+                    <script
+                        dangerouslySetInnerHTML={{
+                        __html: `
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+
+                        gtag('config', '${GA_TRACKING_ID}', {
+                        page_path: window.location.pathname,
+                        });
+                    `,
+                        }}
+                    />
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1754308294123021"
+                    crossorigin="anonymous"></script>
                     {/* Inject MUI styles first to match with the prepend: true configuration. */}
                     {this.props.emotionStyleTags}
                 </Head>

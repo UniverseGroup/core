@@ -71,6 +71,7 @@ module.exports = withPlugins([
       NORMAL_IMG: process.env.NORMAL_IMG,
       BOT_REVIEWER: process.env.BOT_REVIEWER,
       CSRF_SECRET: process.env.CSRF_SECRET,
+      GA_TRACKING_ID: process.env.GA_TRACKING_ID,
     },
     webpack(config, options) {
       return config
