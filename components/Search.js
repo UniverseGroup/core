@@ -78,6 +78,11 @@ const SearchBar = () => {
                             flexWrap:'wrap',
                             columnGap:'0.3em',
                         }}>
+                            <Link href={`/bots`} passHref scroll={false}>
+                                <div className="category">
+                                    <strong>전체</strong>
+                                </div>
+                            </Link>
                     {
                         Category.map((item,index)=>{
                             return(
