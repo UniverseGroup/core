@@ -92,7 +92,7 @@ export default function Home({ ...key }) {
                         <>
                             <div style={{ display: 'inline-grid', marginTop: '2rem', marginBottom: '2rem' }}>
                                 <Typography variant="h4" sx={{ fontFamily: 'Do Hyeon', marginTop: '3em' }}>
-                                    🤖 봇 리스트
+                                    🤖 봇 리스트 - {router.query.name}
                                 </Typography>
                                 <div className={styles.grid} style={{ gap: '1em' }}>
                                     <BotCard bot={botlist.sort((a,b)=>b.hearts - a.hearts)} />
