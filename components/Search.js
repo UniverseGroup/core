@@ -7,7 +7,19 @@ import {useState, useRef} from 'react';
 import useOutsideClick from "../utils/useOutsideClick";
 import Link from 'next/link';
 import Image from 'next/image';
-
+import Box from "@mui/material/Box";
+const Category = [
+    { value: 'manage', label: '관리' },
+    { value: 'music', label: '뮤직' },
+    { value: 'util', label: '유틸리티' },
+    { value: 'game', label: '게임' },
+    { value: 'matchhistory', label: '전적' },
+    { value: 'search', label: '검색' },
+    { value: 'school', label: '학교' },
+    { value: 'cov19', label: '코로나' },
+    { value: 'slash', label: '빗금명령어' },
+    { value: 'etc', label: '기타' }
+]
 const SearchBar = () => {
     const ref = useRef();
     const [search, setSearch] = useState('');
@@ -61,6 +73,24 @@ const SearchBar = () => {
                     }
                 />
             </FormControl>
+            <Box sx={{
+                            display:'flex',
+                            flexWrap:'wrap',
+                            columnGap:'0.3em',
+                        }}>
+                    {
+                        Category.map((item,index)=>{
+                            return(
+                                <Link href={`/bots/category/${item.label}`} key={index} passHref scroll={false}>
+                                    <div className="category">
+                                        <strong>{item.label}</strong>
+                                    </div>
+                                </Link>
+                            )
+                        })
+                    }
+                    
+            </Box>
             <div style={{
                 display: focus ? 'block' : 'none',
                 width: '93em',

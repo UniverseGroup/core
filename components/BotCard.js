@@ -10,6 +10,16 @@ import Link from "next/link";
 import Divider from "@mui/material/Divider";
 import Tooltip from "@mui/material/Tooltip";
 import {BiBadgeCheck} from "react-icons/bi";
+import Box from "@mui/material/Box";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCircle} from "@fortawesome/free-solid-svg-icons/faCircle";
+const statusColor = {
+    'online':'#00bfa5',
+    'idle':'#faa61a',
+    'dnd':'#f04747',
+    'offline':'#747f8d',
+    'streaming':'#643da7'
+}
 const BotCard = ({manage=false,bot,mode=undefined})=>{
     const router = useRouter();
     const Topto = () => {
@@ -39,9 +49,12 @@ const BotCard = ({manage=false,bot,mode=undefined})=>{
                                     <Image quality={100} width={256} height={256} src={`/api/imageproxy?url=${encodeURIComponent(bot.botavatar+"?size=512")}`}/>
                                 </div>
                                 <div className="botcard__body">
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        {bot.botname}
-                                    </Typography>
+                                    <div style={{display:'flex',alignContent:'center'}}>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            {bot.botname}
+                                        </Typography>
+                                        <FontAwesomeIcon icon={faCircle} size='sm' style={{color:statusColor[bot.status],border:'2px #000000 solid',borderRadius:'100%'}}/>
+                                    </div>
                                     <Typography variant="body2" color="textSecondary" component="p">
                                         {bot.slug}
                                     </Typography>
@@ -69,6 +82,39 @@ const BotCard = ({manage=false,bot,mode=undefined})=>{
                                             )
                                         }
                                     </div>
+                                    <Box sx={{
+                                                    display:'flex',
+                                                    flexWrap:'wrap',
+                                                    columnGap:'0.3em',
+                                                }}>
+                                            {
+                                                bot.category.slice(0,2).map((item,index)=>{
+                                                    return(
+                                                        <>
+                                                            <Link href={`/bots/category/${item.label}`} key={index} passHref scroll={false}>
+                                                                <div className="category">
+                                                                    <strong>{item.label}</strong>
+                                                                </div>
+                                                            </Link>
+                                                        </>
+                                                    
+                                                    )
+                                                    
+                                                })
+                                            }
+                                            {
+                                                bot.category.length>2&&(
+                                                    <>
+                                                        <div className="category">
+                                                            <strong>
+                                                               +{bot.category.length-2}
+                                                            </strong>
+                                                        </div>
+                                                    </>
+                                                )
+                                            }
+                                            
+                                    </Box>
                                 </div>
                                 <Divider style={{marginTop: '1rem', marginBottom: '1rem'}}/>
                                 <div className="botcard_action">

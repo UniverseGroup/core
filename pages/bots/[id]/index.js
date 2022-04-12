@@ -145,9 +145,11 @@ const Botpage = ({...data}) => {
                                 botdata.category.map((category,index)=>{
                                     return(
                                         <>
-                                            <div style={{border:'2px #00bfa5 solid',padding:'1em',borderRadius:'0.8em',height:'1.3em',display:'flex',justifyContent:'flex-start',alignItems:'center',columnGap:'0.2em'}}>
-                                                <strong>{category.label}</strong>
-                                            </div>
+                                            <Link href={`/bots/category/${category.label}`} key={index} passHref scroll={false}>
+                                                <div className="category">
+                                                    <strong>{category.label}</strong>
+                                                </div>
+                                            </Link>
                                         </>
                                     )
                                 })
