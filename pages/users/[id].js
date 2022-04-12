@@ -123,7 +123,7 @@ const Mypage = ({...data}) => {
                     marginBottom:'5em'
                 }}>
                     {
-                        Boolean(bots) ?<BotCard bot={bots} manage={userinfo.id===router.query.id} mode="all"/>:(
+                        Boolean(bots) ?<BotCard bot={bots} manage={userdata.id===router.query.id} mode="all"/>:(
                             <Typography variant="h6" style={{fontWeight:'bold',marginTop:'1.4em',marginBottom:'0.5em'}}>소유한 봇이 없습니다.</Typography>
                         )
                     }
